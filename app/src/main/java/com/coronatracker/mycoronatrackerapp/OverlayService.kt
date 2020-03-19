@@ -1,4 +1,4 @@
-package com.coronatracker.coronatracker
+package com.coronatracker.mycoronatrackerapp
 
 import android.app.Service
 import android.content.BroadcastReceiver

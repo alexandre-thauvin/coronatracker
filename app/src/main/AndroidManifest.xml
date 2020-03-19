@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.coronatracker.coronatracker">
+    package="com.coronatracker.mycoronatrackerapp">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
@@ -14,19 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service
-            android:name=".LockScreenService"
+            android:name="com.coronatracker.mycoronatrackerapp.LockScreenService"
             android:showOnLockScreen="true"
             android:enabled="true"
             android:exported="true"></service>
         <service
             android:showOnLockScreen="true"
-            android:name=".OverlayService"
+            android:name="com.coronatracker.mycoronatrackerapp.OverlayService"
             android:enabled="true"
             android:exported="false" />
 
         <activity
             android:showOnLockScreen="true"
-            android:name=".MainActivity">
+            android:name="com.coronatracker.mycoronatrackerapp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

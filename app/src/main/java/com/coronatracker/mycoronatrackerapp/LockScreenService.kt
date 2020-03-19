@@ -1,4 +1,4 @@
-package com.coronatracker.coronatracker
+package com.coronatracker.mycoronatrackerapp
 
 import android.app.Service
 import android.content.BroadcastReceiver
@@ -12,7 +12,6 @@ import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 
 
 /**
@@ -34,7 +33,7 @@ class LockScreenService : Service() {
         super.onCreate()
         windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
-        mView = View.inflate(baseContext, com.coronatracker.coronatracker.R.layout.lockscreen_view, null)
+        mView = View.inflate(baseContext, com.coronatracker.mycoronatrackerapp.R.layout.lockscreen_view, null)
         mView!!.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_FULLSCREEN
                 or View.SYSTEM_UI_FLAG_VISIBLE

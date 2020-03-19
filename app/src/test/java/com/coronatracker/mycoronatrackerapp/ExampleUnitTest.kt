@@ -1,4 +1,4 @@
-package com.coronatracker.coronatracker
+package com.coronatracker.mycoronatrackerapp
 
 import org.junit.Test
 

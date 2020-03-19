@@ -1,4 +1,4 @@
-package com.coronatracker.coronatracker
+package com.coronatracker.mycoronatrackerapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -1,4 +1,4 @@
-package com.coronatracker.coronatracker
+package com.coronatracker.mycoronatrackerapp
 
 import android.content.Intent
 import android.net.Uri
@@ -7,10 +7,10 @@ import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.coronatracker.coronatracker.adapter.ConfirmedAdapter
-import com.coronatracker.coronatracker.adapter.DeathsAdapter
-import com.coronatracker.coronatracker.adapter.RecoveredAdapter
-import com.coronatracker.coronatracker.network.ApiServiceImp
+import com.coronatracker.mycoronatrackerapp.adapter.ConfirmedAdapter
+import com.coronatracker.mycoronatrackerapp.adapter.DeathsAdapter
+import com.coronatracker.mycoronatrackerapp.adapter.RecoveredAdapter
+import com.coronatracker.mycoronatrackerapp.network.ApiServiceImp
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

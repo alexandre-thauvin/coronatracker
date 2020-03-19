@@ -1,6 +1,6 @@
-package com.coronatracker.coronatracker.network
+package com.coronatracker.mycoronatrackerapp.network
 
-import com.coronatracker.coronatracker.model.Data
+import com.coronatracker.mycoronatrackerapp.model.Data
 import io.reactivex.Observable
 import retrofit2.http.*
 

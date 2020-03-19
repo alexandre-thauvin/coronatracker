@@ -1,4 +1,4 @@
-package com.coronatracker.coronatracker.model
+package com.coronatracker.mycoronatrackerapp.model
 
 import java.io.Serializable
 

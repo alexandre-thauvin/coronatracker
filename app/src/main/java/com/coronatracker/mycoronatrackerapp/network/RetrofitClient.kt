@@ -1,4 +1,4 @@
-package com.coronatracker.coronatracker.network
+package com.coronatracker.mycoronatrackerapp.network
 
 
 import okhttp3.OkHttpClient

@@ -1,11 +1,11 @@
-package com.coronatracker.coronatracker.adapter
+package com.coronatracker.mycoronatrackerapp.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.coronatracker.coronatracker.R
-import com.coronatracker.coronatracker.model.Data
+import com.coronatracker.mycoronatrackerapp.R
+import com.coronatracker.mycoronatrackerapp.model.Data
 import kotlinx.android.synthetic.main.death_item.view.*
 
 class DeathsAdapter: RecyclerView.Adapter<DeathsAdapter.ConfirmedViewHolder>() {
