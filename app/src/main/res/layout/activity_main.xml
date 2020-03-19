@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/black"
     tools:context=".MainActivity">
 
@@ -22,60 +22,60 @@
         app:layout_constraintGuide_percent="0.66" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        app:layout_constraintEnd_toStartOf="@id/firstGuideline"
-        app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/swipeConfirmed"
         android:layout_width="130dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/firstGuideline"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:background="@drawable/background_column"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:id="@+id/rlConfirmed"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/background_column">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_centerHorizontal="true"
                     android:id="@+id/tvTitleConfirmed"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="10dp"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/white"
-                    android:text="@string/total_confirmed"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/total_confirmed"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_centerHorizontal="true"
-                    android:textStyle="bold"
-                    android:layout_below="@+id/tvTitleConfirmed"
                     android:id="@+id/tvNumberTotalConfirmed"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginTop="10dp"
-                    android:textSize="24sp"
-                    android:textColor="@color/redNumberConfirmed"
-                    android:text="200 000"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvTitleConfirmed"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="200 000"
+                    android:textColor="@color/redNumberConfirmed"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="-.5dp"
-                    android:layout_below="@+id/tvNumberTotalConfirmed"
                     android:id="@+id/recycler_confirmed"
                     android:layout_width="wrap_content"
-                    tools:listitem="@layout/confirmed_item"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/tvNumberTotalConfirmed"
+                    android:layout_marginStart="-.5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_height="match_parent"/>
+                    tools:listitem="@layout/confirmed_item" />
 
             </RelativeLayout>
 
@@ -83,60 +83,61 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        app:layout_constraintEnd_toStartOf="@id/secondGuideline"
-        app:layout_constraintStart_toStartOf="@id/firstGuideline"
         android:id="@+id/swipeDeaths"
         android:layout_width="130dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/secondGuideline"
+        app:layout_constraintStart_toStartOf="@id/firstGuideline">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <RelativeLayout
-                android:gravity="center_horizontal"
-                android:background="@drawable/background_column"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="5dp"
                 android:id="@+id/rlDeaths"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/background_column"
+                android:gravity="center_horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_centerHorizontal="true"
                     android:id="@+id/tvTitleDeaths"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="10dp"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/white"
-                    android:text="@string/total_deaths"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/total_deaths"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_centerHorizontal="true"
-                    android:textStyle="bold"
-                    android:layout_below="@+id/tvTitleDeaths"
                     android:id="@+id/tvNumberTotalDeaths"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginTop="10dp"
-                    android:textSize="24sp"
-                    android:textColor="@android:color/white"
-                    android:text="200 000"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvTitleDeaths"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="200 000"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="-.5dp"
-                    android:layout_below="@+id/tvNumberTotalDeaths"
                     android:id="@+id/recycler_deaths"
                     android:layout_width="wrap_content"
-                    tools:listitem="@layout/death_item"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/tvNumberTotalDeaths"
+                    android:layout_marginStart="-.5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_height="match_parent"/>
+                    tools:listitem="@layout/death_item" />
 
             </RelativeLayout>
         </RelativeLayout>
@@ -144,66 +145,66 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/secondGuideline"
         android:id="@+id/swipeRecovered"
         android:layout_width="130dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/secondGuideline">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <RelativeLayout
-                android:gravity="center_horizontal"
-                android:background="@drawable/background_column"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginEnd="5dp"
                 android:id="@+id/rlRecovered"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/background_column"
+                android:gravity="center_horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_centerHorizontal="true"
                     android:id="@+id/tvTitleRecovered"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="10dp"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/white"
-                    android:text="@string/total_recovered"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/total_recovered"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_centerHorizontal="true"
-                    android:textStyle="bold"
-                    android:layout_below="@+id/tvTitleRecovered"
                     android:id="@+id/tvNumberTotalRecovered"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginTop="10dp"
-                    android:textSize="24sp"
-                    android:textColor="@color/greenNumberRecovered"
-                    android:text="200 000"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvTitleRecovered"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="200 000"
+                    android:textColor="@color/greenNumberRecovered"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="-.5dp"
-                    android:layout_below="@+id/tvNumberTotalRecovered"
                     android:id="@+id/recycler_recovered"
                     android:layout_width="wrap_content"
-                    tools:listitem="@layout/recovered_item"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/tvNumberTotalRecovered"
+                    android:layout_marginStart="-.5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_height="match_parent"/>
+                    tools:listitem="@layout/recovered_item" />
 
             </RelativeLayout>
         </RelativeLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
