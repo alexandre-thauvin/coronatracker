@@ -25,6 +25,7 @@
         android:id="@+id/swipeConfirmed"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/firstGuideline"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -87,7 +88,8 @@
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toStartOf="@id/secondGuideline"
-        app:layout_constraintStart_toStartOf="@id/firstGuideline">
+        app:layout_constraintStart_toStartOf="@id/firstGuideline"
+        app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -149,7 +151,8 @@
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/secondGuideline">
+        app:layout_constraintStart_toStartOf="@id/secondGuideline"
+        app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
             android:layout_width="wrap_content"
