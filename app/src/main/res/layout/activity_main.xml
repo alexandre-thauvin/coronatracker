@@ -23,7 +23,7 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeConfirmed"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/firstGuideline"
@@ -84,10 +84,11 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeDeaths"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
+        android:layout_marginStart="10dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toStartOf="@id/secondGuideline"
-        app:layout_constraintStart_toStartOf="@id/firstGuideline"
+        app:layout_constraintStart_toEndOf="@id/firstGuideline"
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
@@ -98,7 +99,6 @@
                 android:id="@+id/rlDeaths"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/background_column"
@@ -146,8 +146,9 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRecovered"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/secondGuideline"
         app:layout_constraintTop_toTopOf="parent">
@@ -160,9 +161,7 @@
                 android:id="@+id/rlRecovered"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="5dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/background_column"
                 android:gravity="center_horizontal">
