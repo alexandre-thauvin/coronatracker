@@ -3,4 +3,6 @@
     <string name="total_confirmed">Total Confirmed</string>
     <string name="total_deaths">Total Deaths</string>
     <string name="total_recovered">Total Recovered</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

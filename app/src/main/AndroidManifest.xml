@@ -13,20 +13,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service
-            android:name="com.coronatracker.mycoronatrackerapp.LockScreenService"
-            android:showOnLockScreen="true"
-            android:enabled="true"
-            android:exported="true"></service>
-        <service
-            android:showOnLockScreen="true"
-            android:name="com.coronatracker.mycoronatrackerapp.OverlayService"
-            android:enabled="true"
-            android:exported="false" />
+        <receiver android:name=".widget.CasesWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/cases_widget_info" />
+        </receiver>
 
         <activity
-            android:showOnLockScreen="true"
-            android:name="com.coronatracker.mycoronatrackerapp.MainActivity">
+            android:screenOrientation="fullSensor"
+            android:name=".MainActivity"
+            android:showOnLockScreen="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

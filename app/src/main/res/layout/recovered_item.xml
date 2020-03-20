@@ -13,7 +13,6 @@
             android:id="@+id/tvNumberRecovered"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:text="15 000"
             android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
             android:textColor="@color/greenNumberRecovered"
@@ -23,7 +22,6 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCountryRecovered"
             android:textSize="16sp"
-            android:text="China"
             android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
             android:textColor="@android:color/white"

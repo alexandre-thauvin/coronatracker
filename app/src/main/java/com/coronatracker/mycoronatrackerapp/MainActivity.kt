@@ -1,9 +1,7 @@
 package com.coronatracker.mycoronatrackerapp
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +9,7 @@ import com.coronatracker.mycoronatrackerapp.adapter.ConfirmedAdapter
 import com.coronatracker.mycoronatrackerapp.adapter.DeathsAdapter
 import com.coronatracker.mycoronatrackerapp.adapter.RecoveredAdapter
 import com.coronatracker.mycoronatrackerapp.network.ApiServiceImp
+import com.coronatracker.mycoronatrackerapp.widget.CasesWidget
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -27,7 +26,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //checkDrawOverlayPermission()
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or
+        WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
+        WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
+        WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
         initView()
         initListeners()
     }
@@ -94,35 +96,6 @@ class MainActivity : AppCompatActivity() {
                 recoveredAdapter.update(it)
             }, Throwable::printStackTrace)
         )
-    }
-
-
-    fun checkDrawOverlayPermission() {
-        /** check if we already  have permission to draw over other apps */
-        if (!Settings.canDrawOverlays(this)) {
-            /** if not construct intent to request permission */
-            val intent = Intent(
-                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                Uri.parse("package:" + getPackageName())
-            );
-            /** request permission via start activity for result */
-            startActivityForResult(intent, REQUEST_CODE);
-        } else {
-            startService(Intent(this, LockScreenService::class.java))
-        }
-    }
-
-    override fun onActivityResult(
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
-    ) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE) {
-            if (Settings.canDrawOverlays(this)) {
-                startService(Intent(this, LockScreenService::class.java))
-            }
-        }
     }
 
     override fun onDestroy() {
