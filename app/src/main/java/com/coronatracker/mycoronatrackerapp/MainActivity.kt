@@ -57,13 +57,6 @@ class MainActivity : AppCompatActivity() {
             .build()
         val workManager = WorkManager.getInstance(this)
         workManager.enqueueUniquePeriodicWork("fetch_data", ExistingPeriodicWorkPolicy.REPLACE, work)
-
-
-        /*val builder = JobInfo.Builder(jobId++, componentName)
-        builder.setPeriodic(900000)
-        builder.setPersisted(true)
-        val tm = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
-        tm.schedule(builder.build())*/
     }
 
     private fun initView() {
