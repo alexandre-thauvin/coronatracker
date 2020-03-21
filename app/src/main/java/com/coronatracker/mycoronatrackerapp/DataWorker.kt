@@ -14,7 +14,7 @@ import io.reactivex.schedulers.Schedulers
 class DataWorker(context: Context, workerParameters: WorkerParameters) : Worker(context, workerParameters) {
     private val disposable = CompositeDisposable()
     override fun doWork(): Result {
-        disposable.add(
+         disposable.add(
             ApiServiceImp.getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
