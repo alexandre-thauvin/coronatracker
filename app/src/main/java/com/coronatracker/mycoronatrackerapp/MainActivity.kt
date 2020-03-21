@@ -1,42 +1,69 @@
 package com.coronatracker.mycoronatrackerapp
 
+import android.content.*
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.work.*
 import com.coronatracker.mycoronatrackerapp.adapter.ConfirmedAdapter
 import com.coronatracker.mycoronatrackerapp.adapter.DeathsAdapter
 import com.coronatracker.mycoronatrackerapp.adapter.RecoveredAdapter
+import com.coronatracker.mycoronatrackerapp.model.Data
 import com.coronatracker.mycoronatrackerapp.network.ApiServiceImp
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.reflect.Field
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
     private var disposable = CompositeDisposable()
-    private val REQUEST_CODE = 10001
     private lateinit var confirmedAdapter: ConfirmedAdapter
     private lateinit var deathsAdapter: DeathsAdapter
     private lateinit var recoveredAdapter: RecoveredAdapter
     private var isDataReady = false
+    private var dataUpdateReceiver: DataUpdateReceiver? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or
         WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
         WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
         WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
+
+        scheduleJob()
         initListeners()
+    }
+
+    private fun scheduleJob(){
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
+
+        val work = PeriodicWorkRequestBuilder<DataWorker>(15, TimeUnit.MINUTES)
+            .setConstraints(constraints)
+            .build()
+        val workManager = WorkManager.getInstance(this)
+        workManager.enqueueUniquePeriodicWork("fetch_data", ExistingPeriodicWorkPolicy.REPLACE, work)
+
+
+        /*val builder = JobInfo.Builder(jobId++, componentName)
+        builder.setPeriodic(900000)
+        builder.setPersisted(true)
+        val tm = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
+        tm.schedule(builder.build())*/
     }
 
     private fun initView() {
@@ -107,10 +134,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        initView()
-    }
+
 
     private fun renderRefreshing(){
         swipeConfirmed.isRefreshing = false
@@ -124,11 +148,15 @@ class MainActivity : AppCompatActivity() {
             ApiServiceImp.getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnError {
+                    ivLogo.clearAnimation()
+                    ivLogo.visibility = View.GONE
+                    clAll.visibility = View.VISIBLE
+                    Toast.makeText(this, "API is down, please come back soon", Toast.LENGTH_LONG).show()
+                }
                 .subscribe({
                     renderRefreshing()
-                    tvNumberTotalConfirmed.text = it.cases.toString()
-                    tvNumberTotalDeaths.text = it.deaths.toString()
-                    tvNumberTotalRecovered.text = it.recovered.toString()
+                    updateTotalNumbers(it)
                     if (isDataReady){
                         ivLogo.clearAnimation()
                         ivLogo.visibility = View.GONE
@@ -139,11 +167,15 @@ class MainActivity : AppCompatActivity() {
         disposable.add(ApiServiceImp.getByCountry()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnError {
+                ivLogo.clearAnimation()
+                ivLogo.visibility = View.GONE
+                clAll.visibility = View.VISIBLE
+                Toast.makeText(this, "API is down, please come back soon", Toast.LENGTH_LONG).show()
+            }
             .subscribe({
                 renderRefreshing()
-                confirmedAdapter.update(it)
-                deathsAdapter.update(it)
-                recoveredAdapter.update(it)
+                updateAdapter(it)
                 isDataReady = true
                 if (!tvNumberTotalRecovered.text.toString().isNullOrEmpty()){
                     ivLogo.clearAnimation()
@@ -154,8 +186,60 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    inner class DataUpdateReceiver : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent) {
+            if (intent.action == ALL) {
+                val it = intent.getParcelableExtra<Data>(ALL)!!
+                updateTotalNumbers(it)
+            }
+            else {
+                val it = intent.getParcelableArrayListExtra<Data>(BY_COUNTRY)!!.toList()
+                updateAdapter(it)
+            }
+        }
+    }
+
+    private fun updateAdapter(it: List<Data>){
+        confirmedAdapter.update(it)
+        deathsAdapter.update(it)
+        recoveredAdapter.update(it)
+    }
+
+    private fun updateTotalNumbers(it: Data){
+        tvNumberTotalConfirmed.text = it.cases.toString()
+        tvNumberTotalDeaths.text = it.deaths.toString()
+        tvNumberTotalRecovered.text = it.recovered.toString()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        initView()
+        /*val startServiceIntent = Intent(this, FetchDataJobService::class.java)
+        startService(startServiceIntent)*/
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (dataUpdateReceiver == null) {
+            dataUpdateReceiver = DataUpdateReceiver()
+        }
+        val intentFilter = IntentFilter(ALL)
+        registerReceiver(dataUpdateReceiver, intentFilter)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (dataUpdateReceiver != null) {
+            unregisterReceiver(dataUpdateReceiver)
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         disposable.dispose()
+    }
+    companion object {
+        const val ALL = "all"
+        const val BY_COUNTRY = "by_country"
     }
 }
