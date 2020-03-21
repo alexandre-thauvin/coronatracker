@@ -24,7 +24,6 @@
         </receiver>
 
         <activity
-            android:screenOrientation="fullSensor"
             android:name=".MainActivity"
             android:showOnLockScreen="true">
             <intent-filter>
