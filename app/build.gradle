@@ -6,14 +6,6 @@ apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.firebase.firebase-perf'
 
 android {
-    signingConfigs {
-        release {
-            storeFile project.file('secu/keystore.kjs')
-            storePassword 'coronatracker'
-            keyAlias = 'coronatracker'
-            keyPassword 'coronatracker'
-        }
-    }
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
 
@@ -29,7 +21,6 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
