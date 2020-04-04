@@ -10,4 +10,5 @@
     <color name="greyCountryDeath">#AEAEAE</color>
     <color name="greenNumberRecovered">#70A800</color>
     <color name="greyBar">#5C5C5C</color>
+    <color name="blueActiveCases">#3D7DF0</color>
 </resources>

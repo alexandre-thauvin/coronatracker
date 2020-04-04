@@ -1,6 +1,9 @@
 package com.coronatracker.mycoronatrackerapp
 
-import android.content.*
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -18,6 +21,7 @@ import com.coronatracker.mycoronatrackerapp.adapter.DeathsAdapter
 import com.coronatracker.mycoronatrackerapp.adapter.RecoveredAdapter
 import com.coronatracker.mycoronatrackerapp.model.Data
 import com.coronatracker.mycoronatrackerapp.network.ApiServiceImp
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -32,17 +36,24 @@ class MainActivity : AppCompatActivity() {
     private lateinit var deathsAdapter: DeathsAdapter
     private lateinit var recoveredAdapter: RecoveredAdapter
     private var isDataReady = false
+    private lateinit var countryDetailDialog: CountryDetailDialog
     private var dataUpdateReceiver: DataUpdateReceiver? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        if (BuildConfig.DEBUG) {
+            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(false)
+        }
+        else {
+            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
+        }
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or
         WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
         WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
         WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
-
+        countryDetailDialog = CountryDetailDialog()
         scheduleJob()
         initListeners()
     }
@@ -62,17 +73,17 @@ class MainActivity : AppCompatActivity() {
     private fun initView() {
         recycler_confirmed.layoutManager = LinearLayoutManager(this)
         recycler_confirmed.itemAnimator = DefaultItemAnimator()
-        confirmedAdapter = ConfirmedAdapter()
+        confirmedAdapter = ConfirmedAdapter(this::showCountryDetailPopup)
         recycler_confirmed.adapter = confirmedAdapter
 
         recycler_deaths.layoutManager = LinearLayoutManager(this)
         recycler_deaths.itemAnimator = DefaultItemAnimator()
-        deathsAdapter = DeathsAdapter()
+        deathsAdapter = DeathsAdapter(this::showCountryDetailPopup)
         recycler_deaths.adapter = deathsAdapter
 
         recycler_recovered.layoutManager = LinearLayoutManager(this)
         recycler_recovered.itemAnimator = DefaultItemAnimator()
-        recoveredAdapter = RecoveredAdapter()
+        recoveredAdapter = RecoveredAdapter(this::showCountryDetailPopup)
         recycler_recovered.adapter = recoveredAdapter
 
         val mSwipeRefreshLayoutConfirmed =
@@ -113,6 +124,13 @@ class MainActivity : AppCompatActivity() {
         clAll.visibility = View.GONE
 
         pullAllAndCountries()
+    }
+
+    private fun showCountryDetailPopup(data: Data){
+        val bundle = Bundle()
+        bundle.putParcelable("data", data)
+        countryDetailDialog.arguments = bundle
+        countryDetailDialog.show(supportFragmentManager, "CountryDetailPopup")
     }
 
     private fun initListeners(){

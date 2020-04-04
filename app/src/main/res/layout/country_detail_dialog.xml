@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/width_country_detail_popup"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/transparent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:background="@drawable/background_column"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:id="@+id/tvCountry"
+            android:layout_centerHorizontal="true"
+            android:textSize="24sp"
+            android:fontFamily="@font/baloo_medium"
+            android:layout_marginStart="30dp"
+            android:textColor="@android:color/white"
+            android:text="China"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_below="@id/tvCountry"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="30dp"
+            android:id="@+id/llTotalConfirmed"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:gravity="start"
+                android:textAlignment="viewStart"
+                android:layout_marginEnd="20dp"
+                android:id="@+id/tvTotalConfirmed"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_medium"
+                android:textColor="@android:color/white"
+                android:text="@string/total_confirmed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:textStyle="bold"
+                app:fontFamily="@font/baloo_medium"
+                android:id="@+id/tvTotalConfirmedNumber"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_medium"
+                android:textColor="@color/redNumberConfirmed"
+                android:text="120000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_below="@id/llTotalConfirmed"
+            android:id="@+id/llTotalDeaths"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_marginEnd="50dp"
+                android:id="@+id/tvTotalDeaths"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_medium"
+                android:textColor="@android:color/white"
+                android:text="@string/total_deaths"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:textStyle="bold"
+                app:fontFamily="@font/baloo_medium"
+                android:id="@+id/tvTotalDeathsNumber"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_medium"
+                android:textColor="@color/whiteNumberDeath"
+                android:text="120000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/llTotalDeaths"
+            android:layout_marginStart="30dp"
+            android:id="@+id/llTotalRecovered"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_marginEnd="22dp"
+                android:id="@+id/tvTotalRecovered"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_medium"
+                android:textColor="@android:color/white"
+                android:text="@string/total_recovered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:textStyle="bold"
+                app:fontFamily="@font/baloo_medium"
+                android:id="@+id/tvTotalRecoveredNumber"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_medium"
+                android:textColor="@color/greenNumberRecovered"
+                android:text="120000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/llTodayCases"
+            android:layout_below="@id/llTotalRecovered"
+            android:layout_marginStart="30dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:gravity="start"
+                android:layout_marginEnd="55dp"
+                android:id="@+id/tvTodayCases"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_medium"
+                android:textColor="@android:color/white"
+                android:text="@string/today_cases"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:textStyle="bold"
+                app:fontFamily="@font/baloo_medium"
+                android:id="@+id/tvTodayConfirmedNumber"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_medium"
+                android:textColor="@color/redNumberConfirmed"
+                android:text="120000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/llTodayDeaths"
+            android:layout_below="@+id/llTodayCases"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_marginEnd="45dp"
+                android:id="@+id/tvTodayDeaths"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_medium"
+                android:textColor="@android:color/white"
+                android:text="@string/today_deaths"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:textStyle="bold"
+                app:fontFamily="@font/baloo_medium"
+                android:id="@+id/tvTodayDeathsNumber"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_medium"
+                android:textColor="@color/whiteNumberDeath"
+                android:text="120000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/llTodayDeaths"
+            android:id="@+id/llCriticalCases"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_marginEnd="47dp"
+                android:id="@+id/tvCriticalCases"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_medium"
+                android:textColor="@android:color/white"
+                android:text="@string/critical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:textStyle="bold"
+                app:fontFamily="@font/baloo_medium"
+                android:id="@+id/tvCriticalNumber"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_medium"
+                android:textColor="@color/redNumberConfirmed"
+                android:text="120000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/llCriticalCases"
+            android:id="@+id/llActiveCases"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:gravity="start"
+                android:layout_marginEnd="54dp"
+                android:id="@+id/tvActiveCases"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_medium"
+                android:textColor="@android:color/white"
+                android:text="@string/active"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:textStyle="bold"
+                app:fontFamily="@font/baloo_medium"
+                android:id="@+id/tvActiveNumber"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_medium"
+                android:textColor="@color/blueActiveCases"
+                android:text="120000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

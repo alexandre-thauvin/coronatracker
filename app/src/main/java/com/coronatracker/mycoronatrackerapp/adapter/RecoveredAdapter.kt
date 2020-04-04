@@ -8,7 +8,7 @@ import com.coronatracker.mycoronatrackerapp.R
 import com.coronatracker.mycoronatrackerapp.model.Data
 import kotlinx.android.synthetic.main.recovered_item.view.*
 
-class RecoveredAdapter: RecyclerView.Adapter<RecoveredAdapter.ConfirmedViewHolder>() {
+class RecoveredAdapter(private val clickListener: (Data) -> Unit): RecyclerView.Adapter<RecoveredAdapter.ConfirmedViewHolder>() {
 
     private val list = ArrayList<Data>()
 
@@ -18,15 +18,16 @@ class RecoveredAdapter: RecyclerView.Adapter<RecoveredAdapter.ConfirmedViewHolde
     }
 
     override fun onBindViewHolder(feedViewHolder: ConfirmedViewHolder, position: Int) {
-        feedViewHolder.update(list[position])
+        feedViewHolder.update(list[position], clickListener)
     }
 
     override fun getItemCount() = list.size
 
     class ConfirmedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun update(data: Data) = with(itemView) {
+        fun update(data: Data, clickListener: (Data) -> Unit) = with(itemView) {
             tvCountryRecovered.text = data.country
             tvNumberRecovered.text = data.recovered.toString()
+            rlRecovered.setOnClickListener {  _ -> clickListener(data) }
         }
     }
 

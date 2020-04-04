@@ -8,7 +8,7 @@ import com.coronatracker.mycoronatrackerapp.R
 import com.coronatracker.mycoronatrackerapp.model.Data
 import kotlinx.android.synthetic.main.death_item.view.*
 
-class DeathsAdapter: RecyclerView.Adapter<DeathsAdapter.ConfirmedViewHolder>() {
+class DeathsAdapter(private val clickListener: (Data) -> Unit): RecyclerView.Adapter<DeathsAdapter.ConfirmedViewHolder>() {
 
     private val list = ArrayList<Data>()
 
@@ -18,15 +18,16 @@ class DeathsAdapter: RecyclerView.Adapter<DeathsAdapter.ConfirmedViewHolder>() {
     }
 
     override fun onBindViewHolder(feedViewHolder: ConfirmedViewHolder, position: Int) {
-        feedViewHolder.update(list[position])
+        feedViewHolder.update(list[position], clickListener)
     }
 
     override fun getItemCount() = list.size
 
     class ConfirmedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun update(data: Data) = with(itemView) {
+        fun update(data: Data, clickListener: (Data) -> Unit) = with(itemView) {
             tvCountryDeaths.text = data.country
             tvNumberDeaths.text = data.deaths.toString()
+            rlDeaths.setOnClickListener {  _ -> clickListener(data) }
         }
     }
 
