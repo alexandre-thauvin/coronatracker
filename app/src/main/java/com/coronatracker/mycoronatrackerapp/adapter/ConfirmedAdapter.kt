@@ -25,6 +25,7 @@ class ConfirmedAdapter(private val clickListener: (Data) -> Unit): RecyclerView.
 
     class ConfirmedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun update(data: Data, clickListener: (Data) -> Unit) = with(itemView) {
+
             tvCountryConfirmed.text = data.country
             tvNumberConfirmed.text = data.cases.toString()
             rlConfirmed.setOnClickListener {  _ -> clickListener(data) }

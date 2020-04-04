@@ -46,7 +46,7 @@ class CountryDetailDialog(): DialogFragment() {
         v.findViewById<TextView>(R.id.tvTotalDeathsNumber).text = data.deaths.toString()
         v.findViewById<TextView>(R.id.tvTotalRecoveredNumber).text = data.recovered.toString()
         v.findViewById<TextView>(R.id.tvTodayConfirmedNumber).text = data.todayCases.toString()
-        v.findViewById<TextView>(R.id.tvTodayDeathsNumber).text = data.deaths.toString()
+        v.findViewById<TextView>(R.id.tvTodayDeathsNumber).text = data.todayDeaths.toString()
         v.findViewById<TextView>(R.id.tvCriticalNumber).text = data.critical.toString()
         v.findViewById<TextView>(R.id.tvActiveNumber).text = data.active.toString()
 

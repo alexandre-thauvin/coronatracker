@@ -13,14 +13,19 @@ android {
         applicationId "com.coronatracker.mycoronatrackerapp"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 10
+        versionCode 11
         versionName "1.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+        debug {
+            manifestPlaceholders = [crashlyticsCollectionEnabled:"false"]
+        }
         release {
+            versionNameSuffix '-RELEASE'
+            manifestPlaceholders = [crashlyticsCollectionEnabled:"true"]
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

@@ -211,9 +211,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateAdapter(it: List<Data>){
-        confirmedAdapter.update(it)
-        deathsAdapter.update(it)
-        recoveredAdapter.update(it)
+        confirmedAdapter.update(it.filter { d -> !d.country.contains("World") })
+        deathsAdapter.update(it.filter { d -> !d.country.contains("World") })
+        recoveredAdapter.update(it.filter { d -> !d.country.contains("World") })
     }
 
     private fun updateTotalNumbers(it: Data){
