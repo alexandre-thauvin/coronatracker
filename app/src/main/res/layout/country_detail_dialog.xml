@@ -123,7 +123,7 @@
         <LinearLayout
             android:layout_marginTop="10dp"
             android:id="@+id/llTodayCases"
-            android:layout_below="@id/llTotalRecovered"
+            android:layout_below="@id/llActiveCases"
             android:layout_marginStart="30dp"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -152,6 +152,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginBottom="20dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:id="@+id/llTodayDeaths"
@@ -184,7 +185,7 @@
         <LinearLayout
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
-            android:layout_below="@+id/llTodayDeaths"
+            android:layout_below="@+id/llTotalRecovered"
             android:id="@+id/llCriticalCases"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -213,7 +214,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginBottom="20dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:layout_below="@id/llCriticalCases"
