@@ -26,6 +26,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 import java.lang.reflect.Field
 import java.util.concurrent.TimeUnit
 
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
             FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(false)
         }
         else {
