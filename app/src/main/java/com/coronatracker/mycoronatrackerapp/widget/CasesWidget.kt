@@ -12,8 +12,6 @@ import com.coronatracker.mycoronatrackerapp.network.ApiServiceImp
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import java.util.*
-import kotlin.concurrent.schedule
 
 /**
  * Implementation of App Widget functionality.
@@ -49,14 +47,6 @@ class CasesWidget : AppWidgetProvider() {
                     }
                 }, Throwable::printStackTrace)
         )
-    }
-
-    override fun onReceive(context: Context?, intent: Intent?) {
-        super.onReceive(context, intent)
-        val views = RemoteViews(context!!.packageName, R.layout.cases_widget)
-        views.setTextViewText(R.id.tvNumberTotalConfirmedWidget, intent!!.getIntExtra(CONFIRMED, -1).toString())
-        views.setTextViewText(R.id.tvNumberTotalConfirmedWidget, intent.getIntExtra(DEATHS, -1).toString())
-        views.setTextViewText(R.id.tvNumberTotalConfirmedWidget, intent.getIntExtra(RECOVERED, -1).toString())
     }
 
     override fun onEnabled(context: Context) {
